@@ -5,7 +5,7 @@ import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from KernelX.miner import Miner
+from KoreX.miner import Miner
 from src.utils.config_loader import load_config
 
 
