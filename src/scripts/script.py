@@ -1,8 +1,12 @@
 import logging
 
 from src.scripts.opcodes import OP_CODE_FUNCTION
-from src.utils.serialization import (encode_varint, int_to_little_endian,
-                                     little_endian_to_int, read_varint)
+from src.utils.serialization import (
+    encode_varint,
+    int_to_little_endian,
+    little_endian_to_int,
+    read_varint,
+)
 
 logger = logging.getLogger(__name__)
 

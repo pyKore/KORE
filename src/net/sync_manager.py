@@ -9,9 +9,22 @@ from src.chain.validator import Validator, check_pow
 from src.database.db_manager import BlockchainDB
 from src.database.utxo_manager import UTXOManager
 from src.net.connection import Node
-from src.net.messages import (INV_TYPE_BLOCK, INV_TYPE_TX, Addr, Block,
-                              GetAddr, GetData, GetHeaders, Headers, Inv, Ping,
-                              Pong, Tx, VerAck, Version)
+from src.net.messages import (
+    INV_TYPE_BLOCK,
+    INV_TYPE_TX,
+    Addr,
+    Block,
+    GetAddr,
+    GetData,
+    GetHeaders,
+    Headers,
+    Inv,
+    Ping,
+    Pong,
+    Tx,
+    VerAck,
+    Version,
+)
 from src.net.protocol import NetworkEnvelope
 
 logger = logging.getLogger(__name__)

@@ -109,25 +109,81 @@ class ChainManager:
         common_ancestor_hash = curr_new_hash
         logger.debug(f"Common ancestor is {common_ancestor_hash}")
 
+        blocks_to_disconnect = []
         for block_hash in old_chain:
-            logger.debug(f"Disconnecting block {block_hash}")
-            block = Block.to_obj(self.db.get_block(block_hash))
-            self.disconnect_block(block)
+            block = self.db.get_block(block_hash)
+            if not block:
+                logger.error(f"Block {block_hash} not in DB during reorg. Stopping...")
+                return False
+            blocks_to_disconnect.append(Block.to_obj(block))
 
+        blocks_to_connect = []
         for block_hash in reversed(new_chain):
-            logger.debug(f"Connecting block {block_hash}")
-            block = Block.to_obj(self.db.get_block(block_hash))
-            if not self.connect_block(block):
-                logger.error(
-                    f"Failed to connect block {block_hash} during reorg. Chain state may be corrupt"
+            block = self.db.get_block(block_hash)
+            if not block:
+                logger.error(f"Block {block_hash} not in DB during reorg. Stopping...")
+                return False
+            blocks_to_connect.append(Block.to_obj(block))
+
+        connected_blocks = []
+        try:
+            for block_obj in blocks_to_disconnect:
+                logger.debug(
+                    f"Disconnecting block {block_obj.Height} (hash: {block_obj.BlockHeader.generateBlockHash()[:10]}...)"
                 )
-                return
+                self.disconnect_block(block_obj)
 
-        self.db.set_main_chain_tip(new_tip_hash)
-        self.utxos.set_meta("last_block_hash", new_tip_hash)
-        self.utxos.commit()
+            for block_obj in blocks_to_connect:
+                logger.debug(
+                    f"Connecting block {block_obj.Height} (hash: {block_obj.BlockHeader.generateBlockHash()[:10]}...)"
+                )
+                if not self.connect_block(block_obj):
+                    raise Exception(
+                        f"Failed to connect block {block_obj.Height} ({block_obj.BlockHeader.generateBlockHash()})"
+                    )
+                connected_blocks.append(block_obj)
 
-        self.new_block_event.set()
+            logger.debug(f"Reorganization successful. New tip: {new_tip_hash}")
+            self.db.set_main_chain_tip(new_tip_hash)
+            self.utxos.set_meta("last_block_hash", new_tip_hash)
+            self.utxos.commit()
+
+            self.new_block_event.set()
+
+        except Exception as e:
+            logger.critical(f"Reorganization failed: {e}. Attempting state rollback...")
+            for block_obj in reversed(connected_blocks):
+                logger.warning(
+                    f"Rollback: Disconnecting new block {block_obj.Height} ({block_obj.BlockHeader.generateBlockHash()[:10]}...)"
+                )
+                self.disconnect_block(block_obj)
+
+            original_tip_hash = common_ancestor_hash
+            for block_obj in reversed(blocks_to_disconnect):
+                logger.warning(
+                    f"Rollback: Re-connecting old block {block_obj.Height} ({block_obj.BlockHeader.generateBlockHash()[:10]}...)"
+                )
+                if not self.connect_block(block_obj):
+                    logger.critical(
+                        f"Rollback FAILED. Could not re-connect block {block_obj.Height}"
+                    )
+                    logger.critical(
+                        "CHAIN STATE IS CORRUPTED. MANUAL INTERVENTION REQUIRED"
+                    )
+                    return False
+
+                original_tip_hash = block_obj.BlockHeader.generateBlockHash()
+
+            logger.info(
+                f"Rollback complete. Chain restored to original tip: {original_tip_hash}"
+            )
+            self.db.set_main_chain_tip(original_tip_hash)
+            self.utxos.set_meta("last_block_hash", original_tip_hash)
+            self.utxos.commit()
+
+            return False
+
+        return True
 
     def connect_block(self, block_obj):
         if not self.validator.validate_block_transactions(block_obj, is_in_block=True):

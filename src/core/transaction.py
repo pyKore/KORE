@@ -1,8 +1,12 @@
 from src.scripts.script import Script
 from src.utils.crypto_hash import hash256
-from src.utils.serialization import (bytes_needed, encode_varint,
-                                     int_to_little_endian,
-                                     little_endian_to_int, read_varint)
+from src.utils.serialization import (
+    bytes_needed,
+    encode_varint,
+    int_to_little_endian,
+    little_endian_to_int,
+    read_varint,
+)
 
 SIGHASH_ALL = 1
 

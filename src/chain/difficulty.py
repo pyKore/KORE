@@ -1,7 +1,10 @@
 import logging
 
-from src.chain.params import (AVERAGE_MINE_TIME, MAX_TARGET,
-                              RESET_DIFFICULTY_AFTER_BLOCKS)
+from src.chain.params import (
+    AVERAGE_MINE_TIME,
+    MAX_TARGET,
+    RESET_DIFFICULTY_AFTER_BLOCKS,
+)
 from src.core.genesis import GENESIS_BITS
 from src.database.db_manager import BlockchainDB
 from src.utils.serialization import bits_to_target, target_to_bits

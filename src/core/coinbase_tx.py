@@ -4,13 +4,11 @@ import os
 
 logger = logging.getLogger(__name__)
 
-from src.chain.params import (HALVING_INTERVAL, INITIAL_REWARD_KOR,
-                              REDUCTION_FACTOR)
+from src.chain.params import HALVING_INTERVAL, INITIAL_REWARD_KOR, REDUCTION_FACTOR
 from src.core.transaction import Tx, TxIn, TxOut
 from src.scripts.script import Script
 from src.utils.config_loader import get_miner_wallet
-from src.utils.serialization import (bytes_needed, decode_base58,
-                                     int_to_little_endian)
+from src.utils.serialization import bytes_needed, decode_base58, int_to_little_endian
 
 
 def load_miner_info():

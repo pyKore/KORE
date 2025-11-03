@@ -10,8 +10,7 @@ from src.core.blockheader import BlockHeader
 from src.core.transaction import Tx, TxIn, TxOut
 from src.scripts.script import Script
 from src.utils.crypto_hash import hash256
-from src.utils.serialization import (little_endian_to_int, merkle_root,
-                                     target_to_bits)
+from src.utils.serialization import little_endian_to_int, merkle_root, target_to_bits
 
 GENESIS_REWARD_ADDRESS = "kY7G5zouz5BBxmBn2g5a6zCf7BGeW86eB1"
 GENESIS_MESSAGE = b"Test"
