@@ -3,7 +3,7 @@ import socket
 import time
 from threading import Event, Thread
 
-from KernelX.pow import mine
+from KoreX.pow import mine
 from src.core.block import Block
 from src.core.blockheader import BlockHeader
 from src.core.transaction import Tx
