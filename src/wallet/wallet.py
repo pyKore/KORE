@@ -6,8 +6,8 @@ sys.path.append(os.getcwd())
 
 from secp256k1 import PrivateKey
 
-from src.database.db_manager import AccountDB
-from src.utils.crypto_hash import hash160, hash256
+from src.core.database.AccountDB import AccountDB
+from src.utils.crypto.crypto_hash import hash160, hash256
 
 
 class wallet:

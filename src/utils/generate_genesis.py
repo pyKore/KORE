@@ -5,12 +5,12 @@ import time
 
 sys.path.append(os.getcwd())
 
-from src.core.block import Block
-from src.core.blockheader import BlockHeader
-from src.core.transaction import Tx, TxIn, TxOut
+from src.core.chain.primitives.block import Block
+from src.core.chain.primitives.blockheader import BlockHeader
+from src.core.txs.transaction import Tx, TxIn, TxOut
 from src.scripts.script import Script
-from src.utils.crypto_hash import hash256
-from src.utils.serialization import little_endian_to_int, merkle_root, target_to_bits
+from utils.crypto.crypto_hash import hash256
+from utils.crypto.serialization import little_endian_to_int, merkle_root, target_to_bits
 
 GENESIS_REWARD_ADDRESS = "kY7G5zouz5BBxmBn2g5a6zCf7BGeW86eB1"
 GENESIS_MESSAGE = b"Test"
@@ -42,7 +42,7 @@ def main():
     tx_in = TxIn(prev_tx=b"\0" * 32, prev_index=0xFFFFFFFF)
     tx_in.script_sig.cmds.append(GENESIS_MESSAGE)
 
-    from src.utils.serialization import decode_base58
+    from utils.crypto.serialization import decode_base58
 
     h160 = decode_base58(GENESIS_REWARD_ADDRESS)
     script_pubkey = Script.p2pkh_script(h160)

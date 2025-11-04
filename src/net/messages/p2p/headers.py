@@ -1,5 +1,5 @@
-from src.core.blockheader import BlockHeader
-from src.utils.serialization import encode_varint, read_varint
+from src.core.chain.primitives.blockheader import BlockHeader
+from src.utils.crypto.serialization import encode_varint, read_varint
 
 
 class Headers:

@@ -1,7 +1,7 @@
 import logging
 
 from src.scripts.opcodes import OP_CODE_FUNCTION
-from src.utils.serialization import (
+from src.utils.crypto.serialization import (
     encode_varint,
     int_to_little_endian,
     little_endian_to_int,

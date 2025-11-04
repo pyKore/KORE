@@ -9,8 +9,11 @@ import sys
 import time
 from cmd import Cmd
 
-from src.chain.params import FEE_RATE_FAST, FEE_RATE_NORMAL, FEE_RATE_SLOW
-from src.utils.config_loader import get_config_dict, load_config, update_config
+from utils.config_loader import get_config_dict, load_config, update_config
+
+FEE_RATE_FAST = 1000
+FEE_RATE_NORMAL = 500
+FEE_RATE_SLOW = 100
 
 
 class Colors:
@@ -83,7 +86,7 @@ def start_daemon(host, rpc_port):
     except (ConnectionRefusedError, socket.timeout):
         logger.info("Starting Kore Daemon...")
         print(f"{Colors.WARNING}Starting Kore Daemon...{Colors.ENDC}")
-        daemon_script_path = os.path.join("src", "node", "koreD.py")
+        daemon_script_path = os.path.join("src", "deamon", "koreD.py")
         return start_process_in_new_terminal(daemon_script_path, "daemon")
 
 

@@ -1,13 +1,10 @@
-from src.utils.serialization import (
+from src.net.netparams import INV_TYPE_BLOCK, INV_TYPE_ERROR, INV_TYPE_TX
+from src.utils.crypto.serialization import (
     encode_varint,
     int_to_little_endian,
     little_endian_to_int,
     read_varint,
 )
-
-INV_TYPE_ERROR = 0
-INV_TYPE_TX = 1
-INV_TYPE_BLOCK = 2
 
 
 class Inv:

@@ -1,13 +1,13 @@
 import logging
 
-from src.chain.params import (
+from src.core.chain.chainparams import (
     AVERAGE_MINE_TIME,
     MAX_TARGET,
     RESET_DIFFICULTY_AFTER_BLOCKS,
 )
+from src.core.database.BlockchainDB import BlockchainDB
 from src.core.genesis import GENESIS_BITS
-from src.database.db_manager import BlockchainDB
-from src.utils.serialization import bits_to_target, target_to_bits
+from src.utils.crypto.serialization import bits_to_target, target_to_bits
 
 logger = logging.getLogger(__name__)
 

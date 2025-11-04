@@ -1,7 +1,7 @@
 from io import BytesIO
 
-from src.utils.crypto_hash import hash256
-from src.utils.serialization import int_to_little_endian, little_endian_to_int
+from src.utils.crypto.crypto_hash import hash256
+from src.utils.crypto.serialization import int_to_little_endian, little_endian_to_int
 
 NETWORK_MAGIC = b"\xf9\xbe\xb4\xd9"
 

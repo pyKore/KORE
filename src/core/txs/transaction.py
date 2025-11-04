@@ -1,6 +1,6 @@
 from src.scripts.script import Script
-from src.utils.crypto_hash import hash256
-from src.utils.serialization import (
+from src.utils.crypto.crypto_hash import hash256
+from src.utils.crypto.serialization import (
     bytes_needed,
     encode_varint,
     int_to_little_endian,

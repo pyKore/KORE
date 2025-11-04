@@ -1,6 +1,6 @@
 import time
 
-from src.utils.serialization import int_to_little_endian, little_endian_to_int
+from src.utils.crypto.serialization import int_to_little_endian, little_endian_to_int
 
 
 class Ping:

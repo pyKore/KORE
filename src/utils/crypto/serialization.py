@@ -1,6 +1,6 @@
 from math import log
 
-from src.utils.crypto_hash import hash256
+from src.utils.crypto.crypto_hash import hash256
 
 BASE58_ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
 

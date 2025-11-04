@@ -1,11 +1,11 @@
 import logging
 from threading import RLock
 
-from src.chain.mempool import Mempool
-from src.chain.validator import Validator
-from src.core.block import Block
-from src.core.transaction import TxOut
-from src.database.utxo_manager import UTXOManager
+from src.core.chain.managers.UTXOManager import UTXOManager
+from src.core.chain.mempool import Mempool
+from src.core.chain.primitives.block import Block
+from src.core.chain.validator import Validator
+from src.core.txs.transaction import TxOut
 
 logger = logging.getLogger(__name__)
 

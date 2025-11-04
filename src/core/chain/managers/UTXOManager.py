@@ -2,9 +2,8 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-from src.core.transaction import Tx, TxOut
-from src.database.db_manager import BlockchainDB
-from src.scripts.script import Script
+from src.core.database.BlockchainDB import BlockchainDB
+from src.core.txs.transaction import Tx, TxOut
 
 
 class UTXOManager:

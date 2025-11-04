@@ -1,6 +1,6 @@
-from src.core.blockheader import BlockHeader
-from src.core.transaction import Tx
-from src.utils.serialization import (
+from src.core.chain.primitives.blockheader import BlockHeader
+from src.core.txs.transaction import Tx
+from src.utils.crypto.serialization import (
     encode_varint,
     int_to_little_endian,
     little_endian_to_int,

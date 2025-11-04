@@ -8,12 +8,15 @@ from threading import Event, Thread
 sys.path.append(os.getcwd())
 
 from src.api.server import main as web_main
-from src.chain.chain_manager import ChainManager
+from src.core.chain.managers.ChainManager import ChainManager
+from src.core.chain.managers.UTXOManager import UTXOManager
+from src.core.database.TxIndexDB import TxIndexDB
+from src.core.database.UTXODB import UTXODB
+from src.core.database.BlockchainDB import BlockchainDB
+from src.core.database.MempoolDB import MempoolDB
 from src.core.genesis import create_genesis_block
-from src.database.db_manager import UTXODB, BlockchainDB, MempoolDB, TxIndexDB
-from src.database.utxo_manager import UTXOManager
-from src.net.sync_manager import SyncManager
-from src.node.rpc_server import rpcServer
+from src.net.services.rpc_service import rpcServer
+from src.net.sync import SyncManager
 from src.utils.config_loader import load_config
 from src.utils.logging_config import setup_logging
 

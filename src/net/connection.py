@@ -1,6 +1,6 @@
 import socket
 
-from src.chain.params import P2P_TIMEOUT
+from src.net.netparams import P2P_TIMEOUT
 from src.net.protocol import NetworkEnvelope
 
 

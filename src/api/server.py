@@ -5,8 +5,8 @@ from datetime import datetime, timezone
 from flask import Flask, jsonify
 from flask_cors import CORS
 
-from src.database.db_manager import BlockchainDB
-from src.utils.serialization import decode_base58, encode_base58
+from src.core.database.BlockchainDB import BlockchainDB
+from src.utils.crypto.serialization import decode_base58, encode_base58
 
 app = Flask(__name__)
 CORS(app)

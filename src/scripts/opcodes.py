@@ -1,6 +1,6 @@
 from secp256k1 import PublicKey
 
-from src.utils.crypto_hash import hash160
+from src.utils.crypto.crypto_hash import hash160
 
 
 def op_dup(stack):

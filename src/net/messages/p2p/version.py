@@ -1,7 +1,7 @@
 import time
 
-from src.chain.params import VERSION
-from src.utils.serialization import int_to_little_endian, little_endian_to_int
+from src.core.chain.chainparams import VERSION
+from utils.crypto.serialization import int_to_little_endian, little_endian_to_int
 
 
 class Version:
