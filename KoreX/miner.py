@@ -4,10 +4,9 @@ import time
 from threading import Event, Thread
 
 from KoreX.pow import mine
-from src.core.block import Block
-from src.core.blockheader import BlockHeader
-from src.core.transaction import Tx
-from src.utils.serialization import merkle_root
+from src.core.chain.primitives.block import Block, BlockHeader
+from src.core.txs.transaction import Tx
+from src.utils.crypto.serialization import merkle_root
 
 
 class Miner:

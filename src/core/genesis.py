@@ -1,6 +1,6 @@
-from src.core.block import Block
-from src.core.blockheader import BlockHeader
-from src.core.transaction import Tx, TxIn, TxOut
+from src.core.chain.primitives.block import Block
+from src.core.chain.primitives.blockheader import BlockHeader
+from src.core.txs.transaction import Tx, TxIn, TxOut
 from src.scripts.script import Script
 
 GENESIS_TIMESTAMP = 1760029822

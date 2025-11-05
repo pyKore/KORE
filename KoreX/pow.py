@@ -1,5 +1,5 @@
-from src.utils.crypto_hash import hash256
-from src.utils.serialization import bits_to_target, little_endian_to_int
+from src.utils.crypto.crypto_hash import hash256
+from src.utils.crypto.serialization import bits_to_target, little_endian_to_int
 
 
 def mine(block_header, stop_event):
